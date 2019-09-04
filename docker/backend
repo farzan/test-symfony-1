@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker exec -it irct_2_php_fpm bash
+docker exec -it sym_test_php_fpm bash
