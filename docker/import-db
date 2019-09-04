@@ -1,0 +1,17 @@
+#!/bin/bash
+
+if [ -z $1 ]; then
+	echo "Filename to import missing."
+	exit 1
+fi
+
+if [ ! -f $1 ]; then
+	echo "File not found."
+	exit 2
+fi
+
+user=$(docker exec irct_2_mysql bash -c "echo \$MYSQL_ROOT_USER")
+password=$(docker exec irct_2_mysql bash -c "echo \$MYSQL_ROOT_PASSWORD")
+
+docker exec -i irct_2_mysql mysql -u${user} -p${password} -e "drop database irct_2; create database irct_2"
+docker exec -i irct_2_mysql mysql -u${user} -p${password} irct_2 < "$1"

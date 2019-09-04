@@ -1,0 +1,4 @@
+#!/bin/bash
+
+docker exec -it irct_2_mysql bash
+
